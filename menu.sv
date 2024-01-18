@@ -368,9 +368,9 @@ wire [7:0] bmp_g = cpu_q[15: 8];
 wire [7:0] bmp_b = cpu_q[7 : 0];
 
 ///// Final pixel value
-wire [7:0] R_in = bmp_loaded ? bmp_r : comp_v;
-wire [7:0] G_in = bmp_loaded ? bmp_g : comp_v;
-wire [7:0] B_in = bmp_loaded ? bmp_b : comp_v;
+wire [7:0] R_in = bmp_loaded ? bmp_r : hc[5]^vc[4] ? 8'h1F : 8'h3F; // comp_v;
+wire [7:0] G_in = bmp_loaded ? bmp_g : hc[5]^vc[4] ? 8'h1F : 8'h3F; // comp_v;
+wire [7:0] B_in = bmp_loaded ? bmp_b : hc[5]^vc[4] ? 8'h1F : 8'h3F; // comp_v;
 
 mist_video #(
 	.COLOR_DEPTH(8),
